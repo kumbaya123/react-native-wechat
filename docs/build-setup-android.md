@@ -105,6 +105,7 @@ Then add the following node to `AndroidManifest.xml`:
     <activity
       android:name=".wxapi.WXPayEntryActivity"
       android:label="@string/app_name"
+      android:theme="@android:style/Theme.Translucent"
       android:exported="true"
     />
   </application>
