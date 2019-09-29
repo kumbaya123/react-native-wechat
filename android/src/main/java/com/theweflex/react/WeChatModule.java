@@ -1,7 +1,6 @@
 package com.theweflex.react;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -92,65 +91,12 @@ public class WeChatModule extends ReactContextBaseJavaModule implements IWXAPIEv
         modules.remove(this);
     }
 
-    public static void handleIntent(Intent intent) {
-        for (WeChatModule mod : modules) {
-            mod.api.handleIntent(intent, mod);
-        }
-    }
 
     @ReactMethod
     public void registerApp(String appid, Callback callback) {
         this.appId = appid;
         api = WXAPIFactory.createWXAPI(this.getReactApplicationContext().getBaseContext(), appid, true);
         callback.invoke(null, api.registerApp(appid));
-    }
-
-    @ReactMethod
-    public void isWXAppInstalled(Callback callback) {
-        if (api == null) {
-            callback.invoke(NOT_REGISTERED);
-            return;
-        }
-        callback.invoke(null, api.isWXAppInstalled());
-    }
-
-    @ReactMethod
-    public void isWXAppSupportApi(Callback callback) {
-        if (api == null) {
-            callback.invoke(NOT_REGISTERED);
-            return;
-        }
-        callback.invoke(null, api.isWXAppSupportAPI());
-    }
-
-    @ReactMethod
-    public void getApiVersion(Callback callback) {
-        if (api == null) {
-            callback.invoke(NOT_REGISTERED);
-            return;
-        }
-        callback.invoke(null, api.getWXAppSupportAPI());
-    }
-
-    @ReactMethod
-    public void openWXApp(Callback callback) {
-        if (api == null) {
-            callback.invoke(NOT_REGISTERED);
-            return;
-        }
-        callback.invoke(null, api.openWXApp());
-    }
-
-    @ReactMethod
-    public void sendAuthRequest(String scope, String state, Callback callback) {
-        if (api == null) {
-            callback.invoke(NOT_REGISTERED);
-            return;
-        }
-        SendAuth.Req req = new SendAuth.Req();
-        req.scope = scope;
-        req.state = state;
-        callback.invoke(null, api.sendReq(req));
     }
 
     @ReactMethod
