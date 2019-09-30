@@ -1,10 +1,19 @@
 <img height="200" src="./weixin.png?raw=true">
 
+# Update at 2019-09-30
+在 iOS 里，因为SDK更新到**1.8.6.1，支持Universal Links方式跳转**，Xcode 设置 URL scheme 有所更新
+
+在Xcode中，选择你的工程设置项，选中“TARGETS”一栏，在 “info”标签栏的“LSApplicationQueriesSchemes“添加weixin 和weixinULAPI
+
+**特别是weixinULAPI, 没有添加的话，调不起微信**
+
+
+
 # React-Native-Wechat
 
 [React Native] bridging library that integrates WeChat SDKs:
 
-- [x] iOS SDK 1.7.2
+- [x] iOS SDK 1.8.6.1
 - [x] Android SDK 221
 
 And [react-native-wechat] has the following tracking data in open source world:
