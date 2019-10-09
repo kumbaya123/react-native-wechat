@@ -153,7 +153,7 @@ const nativeSendAuthRequest = wrapApi(WeChat.sendAuthRequest);
  */
 export function sendAuthRequest(scopes, state) {
   return new Promise((resolve, reject) => {
-    WeChat.sendAuthRequest(scopes, state, () => {});
+    WeChat.sendAuthRequest(scopes, state, () => { });
     emitter.once('SendAuth.Resp', resp => {
       if (resp.errCode === 0) {
         resolve(resp);
@@ -277,11 +277,15 @@ export function pay(data) {
       if (result) reject(result);
     });
     emitter.once('PayReq.Resp', resp => {
-      if (resp.errCode === 0) {
-        resolve(resp);
-      } else {
-        reject(new WechatError(resp));
-      }
+      /** modify by Stephen at 2019-10-09 start */
+      // 直接resolve返回结果，让前端做处理
+      resolve(resp);
+      // if (resp.errCode === 0) {
+      //   resolve(resp);
+      // } else {
+      //   reject(new WechatError(resp));
+      // }
+      /** modify by Stephen at 2019-10-09 end */
     });
   });
 }
