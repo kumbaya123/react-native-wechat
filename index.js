@@ -267,7 +267,7 @@ export function pay(data) {
   correct('noncestr', 'nonceStr');
   correct('partnerid', 'partnerId');
   correct('timestamp', 'timeStamp');
-  
+
   // FIXME(94cstyles)
   // Android requires the type of the timeStamp field to be a string
   if (Platform.OS === 'android') data.timeStamp = String(data.timeStamp)
@@ -281,19 +281,17 @@ export function pay(data) {
       if (resp.errCode === 0 || resp.errCode === -1 || resp.errCode === -2) {
         let content = '';
         let resultStatus = null;
-        if(resp.errCode === 0){
+        if (resp.errCode === 0) {
           content = '支付成功';
           resultStatus = resp.errCode;
-        }
-        if(resp.errCode === -1){
+        } else if (resp.errCode === -1) {
           content = '支付失败';
           resultStatus = resp.errCode;
-        }
-        if(resp.errCode === -2){
+        } else if (resp.errCode === -2) {
           content = '用户取消';
           resultStatus = resp.errCode;
         }
-        resolve({content, resultStatus , data: resp});
+        resolve({ content, resultStatus, data: resp });
       } else {
         reject(new WechatError(resp));
       }
