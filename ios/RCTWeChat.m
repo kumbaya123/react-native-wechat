@@ -17,7 +17,7 @@
 #define NOT_REGISTERED (@"registerApp required.")
 #define INVOKE_FAILED (@"WeChat API invoke returns false.")
 
-#define UNIVERSALLINK (@"https://crm.mogulinker.com")
+#define UNIVERSALLINK (@"https://f.mogulinker.com")
 
 @implementation RCTWeChat
 
